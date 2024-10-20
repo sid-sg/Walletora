@@ -35,7 +35,7 @@ const SignInPage = () => {
 
         try {
             const res = await signIn("credentials", {
-                redirect: false,  // Disable automatic redirect
+                redirect: false,  
                 email: postInputs.email,
                 plainPassword: postInputs.password
             });
@@ -46,8 +46,7 @@ const SignInPage = () => {
                 return;
             }
 
-            alert('Sign-in successful! Redirecting to dashboard.');
-            router.push('/dashboard'); // Redirect after successful sign-in
+            router.push('/dashboard'); 
         }
         catch (error) {
             console.error("Error during sign-in:", error);
@@ -61,7 +60,7 @@ const SignInPage = () => {
     return (
         <div>
 
-            <Appbar  user={session.data?.user} />
+            <Appbar/>
             <div className='flex items-center justify-center h-screen'>
                 <div className='bg-gray-900 rounded text-white flex flex-col pt-2 pb-3 px-4 w-64 md:w-80 lg:w-96'>
                     <form onSubmit={handleSubmit}>

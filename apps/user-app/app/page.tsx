@@ -9,9 +9,9 @@ export default function Page(): JSX.Element {
   const router = useRouter();
   return (
     <div>
-      <Appbar  user={session.data?.user} />
+      <Appbar/>
 
-      <div className='flex flex-col items-center'>
+      <div className='mt-20 flex flex-col items-center'>
         <h1 className='text-gray-300 text-4xl sm:text-7xl p-5 tracking-widest '>WALLETORA</h1>
 
         <div className='text-gray-400 md:text-3xl '>

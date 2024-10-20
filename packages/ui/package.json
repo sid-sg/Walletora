@@ -7,7 +7,9 @@
     "./card": "./src/card.tsx",
     "./code": "./src/code.tsx",
     "./appbar": "./src/appbar.tsx",
-    "./inputfield": "./src/inputfield.tsx"
+    "./inputfield": "./src/inputfield.tsx",
+    "./amountInput": "./src/amountInput.tsx",
+    "./dropdown": "./src/dropdown.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

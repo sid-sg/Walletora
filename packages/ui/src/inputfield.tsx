@@ -32,9 +32,9 @@ const InputField = ({ type, label, placeholder, value, onChange, error }: inputT
       )}
     </div>
 
-    <div className="text-sm min-h-0" >
+    {/* <div className="text-sm min-h-0" >
       {error ? <p className="text-red-500">{error}</p> : <p className="invisible">Error placeholder</p>}
-    </div>
+    </div> */}
   </div>
 };
 

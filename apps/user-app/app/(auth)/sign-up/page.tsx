@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'
 import { Appbar } from "@repo/ui/appbar";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 
 const Page = () => {
     const router = useRouter();
@@ -13,7 +13,7 @@ const Page = () => {
         email: "",
         plainPassword: ""
     });
-    const session = useSession();
+    // const session = useSession();
     const [errors, setErrors] = useState<any>({});
     const [loading, setLoading] = useState(false);
 
@@ -40,7 +40,6 @@ const Page = () => {
                 return;
             }
 
-            alert('Sign-up successful! Redirecting to sign-in page.');
             router.push('/sign-in');
         }
         catch (error) {
@@ -55,7 +54,7 @@ const Page = () => {
     return (
         <div>
 
-            <Appbar user={session.data?.user} />
+            <Appbar/>
             <div className='flex items-center justify-center h-screen'>
                 <div className='bg-gray-900 rounded text-white flex flex-col pt-2 pb-3 px-4 w-64 md:w-80 lg:w-96'>
                     <form onSubmit={handleSubmit}>
