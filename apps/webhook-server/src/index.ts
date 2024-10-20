@@ -1,24 +1,49 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import db from "@repo/db/client"
 
 const PORT = 4000;
 const app = express();
 
+
+app.use(express.json());
+
 type infoType = {
-        token: string, 
-        userId: string,
-        amount: string
+    token: string,
+    userId: string,
+    amount: string,
+    webhookSecret: string
 }
-app.post("/hdfc-webhook", async (req, res) => {
-    const info:infoType = {
+app.post("/hdfc-webhook", async (req: Request, res: Response): Promise<any> => {
+
+    const info: infoType = {
         token: req.body.token,
         userId: req.body.userId,
-        amount: req.body.amount
+        amount: req.body.amount,
+        webhookSecret: req.body.webhookSecret
     }
+
+    if (info.webhookSecret != "HDFC_secret") {
+        return res.status(401).json({
+            message: "Unauthorized Bank"
+        });
+    }
+
     //todo: zod validation of info
-    //todo: check if req comes from hdfc bank, use webhook secret
 
     try {
+
+        const processingTrans = await db.onRampTransaction.findUnique({
+            where: {
+                token: info.token
+            }
+        });
+
+        if (!processingTrans || processingTrans.status !== "Processing") {
+            return res.status(400).json({
+                message: "Invalid or processed transaction"
+            })
+        }
+
         await db.$transaction([
 
             db.balance.update({
@@ -44,28 +69,47 @@ app.post("/hdfc-webhook", async (req, res) => {
 
         ]);
 
-        res.json({
+        return res.json({
             message: "successfully processed the webhook"
         })
     }
     catch (e) {
         console.log(e);
-        res.status(411).json({
+        return res.status(411).json({
             message: "Error while processing webhook"
         })
     }
 });
 
-app.post("/kotak-webhook", async (req, res) => {
-    const info:infoType = {
+app.post("/kotak-webhook", async (req, res): Promise<any> => {
+    const info: infoType = {
         token: req.body.token,
         userId: req.body.userId,
-        amount: req.body.amount
+        amount: req.body.amount,
+        webhookSecret: req.body.webhookSecret
+    }
+
+    if (info.webhookSecret != "KOTAK_secret") {
+        return res.status(401).json({
+            message: "Unauthorized Bank"
+        })
     }
     //todo: zod validation of info
-    //todo: check if req comes from hdfc bank, use webhook secret
 
     try {
+
+        const processingTrans = await db.onRampTransaction.findUnique({
+            where: {
+                token: info.token
+            }
+        });
+
+        if (!processingTrans || processingTrans.status !== "Processing") {
+            return res.status(400).json({
+                message: "invalid or processed transaction"
+            })
+        }
+
         await db.$transaction([
 
             db.balance.update({
@@ -91,17 +135,18 @@ app.post("/kotak-webhook", async (req, res) => {
 
         ]);
 
-        res.json({
+        return res.json({
             message: "successfully processed the webhook"
         })
     }
     catch (e) {
         console.log(e);
-        res.status(411).json({
+        return res.status(411).json({
             message: "Error while processing webhook"
         })
     }
 });
+
 
 app.listen(PORT, () => {
     console.log(`Webhook server running on port ${PORT}`);
