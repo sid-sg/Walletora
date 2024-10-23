@@ -81,7 +81,7 @@ app.post("/hdfc-webhook", async (req: Request, res: Response): Promise<any> => {
     }
 });
 
-app.post("/kotak-webhook", async (req, res): Promise<any> => {
+app.post("/axis-webhook", async (req, res): Promise<any> => {
     const info: infoType = {
         token: req.body.token,
         userId: req.body.userId,
@@ -89,7 +89,7 @@ app.post("/kotak-webhook", async (req, res): Promise<any> => {
         webhookSecret: req.body.webhookSecret
     }
 
-    if (info.webhookSecret != "KOTAK_secret") {
+    if (info.webhookSecret != "AXIS_secret") {
         return res.status(401).json({
             message: "Unauthorized Bank"
         })

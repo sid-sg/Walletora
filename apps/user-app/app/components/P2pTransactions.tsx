@@ -4,27 +4,20 @@ import TransactionsItem from "./TransactionsItem"
 // enum statusVal {
 //   Failure = "Failure",
 //   Processing ="Processing",
-//   Success = "Success"
-// }
-// enum statusVal {
-//   Failed,
-//   Success,
-//   Processing
+//   Sent = "Sent"
 // }
 type transactionsType = {
   time: Date,
   amount: number,
   // status: statusVal,
   status: string,
-  provider: string
+  toUserName: string
 }
 
-const OnRampTransactions = ({ transactions }: { transactions: transactionsType[] }) => {
-  // console.log(transactions);
-
+const P2pTransactions = ({ transactions }: { transactions: transactionsType[] }) => {
   if (!transactions || !transactions.length) {
     return (
-      <Card title="Deposits">
+      <Card title="Transactions">
         <div>
           no transactions
         </div>
@@ -34,7 +27,7 @@ const OnRampTransactions = ({ transactions }: { transactions: transactionsType[]
   return (
     <div className="flex justify-center">
 
-      <Card title="Deposits">
+      <Card title="Transactions">
         <div className="divide-y divide-gray-600 p-10">
           {transactions.map((transaction, index) => (
             <div key={index} className="flex justify-center space-x-4 p-2">
@@ -44,9 +37,7 @@ const OnRampTransactions = ({ transactions }: { transactions: transactionsType[]
         </div>
       </Card>
     </div>
-  );
+  )
 }
 
-export default OnRampTransactions
-
-
+export default P2pTransactions

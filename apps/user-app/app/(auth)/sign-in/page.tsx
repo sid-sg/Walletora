@@ -69,7 +69,7 @@ const SignInPage = () => {
                             label='Email'
                             placeholder='johndoe@gmail.com'
                             value={postInputs.email}
-                            onChange={(e) => setPostInputs({ ...postInputs, email: e.target.value })}
+                            onChange={(e:any) => setPostInputs({ ...postInputs, email: e.target.value })}
                             error={errors.email}
                         />
                         <InputField
@@ -77,7 +77,7 @@ const SignInPage = () => {
                             label='Password'
                             placeholder='•••••••••'
                             value={postInputs.password}
-                            onChange={(e) => setPostInputs({ ...postInputs, password: e.target.value })}
+                            onChange={(e:any) => setPostInputs({ ...postInputs, password: e.target.value })}
                             error={errors.password}
                         />
                         <div className='flex justify-center'>

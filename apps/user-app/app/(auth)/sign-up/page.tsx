@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import Link from 'next/link'
 import { Appbar } from "@repo/ui/appbar";
-// import { useSession } from "next-auth/react";
 
 const Page = () => {
     const router = useRouter();
@@ -63,7 +62,7 @@ const Page = () => {
                             label='Name'
                             placeholder='John Doe'
                             value={postInputs.name}
-                            onChange={(e) => setPostInputs({ ...postInputs, name: e.target.value })}
+                            onChange={(e:any) => setPostInputs({ ...postInputs, name: e.target.value })}
                             error={errors.name}
                         />
                         <InputField
@@ -71,7 +70,7 @@ const Page = () => {
                             label='Email'
                             placeholder='johndoe@gmail.com'
                             value={postInputs.email}
-                            onChange={(e) => setPostInputs({ ...postInputs, email: e.target.value })}
+                            onChange={(e:any) => setPostInputs({ ...postInputs, email: e.target.value })}
                             error={errors.email}
                         />
                         <InputField
@@ -79,7 +78,7 @@ const Page = () => {
                             label='Password'
                             placeholder='•••••••••'
                             value={postInputs.plainPassword}
-                            onChange={(e) => setPostInputs({ ...postInputs, plainPassword: e.target.value })}
+                            onChange={(e:any) => setPostInputs({ ...postInputs, plainPassword: e.target.value })}
                             error={errors.plainPassword}
                         />
                         <div className='flex justify-center'>

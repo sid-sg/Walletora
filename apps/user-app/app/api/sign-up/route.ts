@@ -49,6 +49,14 @@ export async function POST(req: Request) {
       }
     });
 
+    const newBalance = await db.balance.create({
+      data:{
+        userId: Number(newUser.id),
+        amount: 0,
+        locked: 0
+      }
+    })
+
     return NextResponse.json({ message: "User created successfully!" }, { status: 201 });
 
   } catch (error) {

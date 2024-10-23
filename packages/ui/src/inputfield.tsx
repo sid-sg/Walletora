@@ -5,7 +5,8 @@ interface inputType {
   label: string,
   placeholder: string,
   value: string,
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void,
+  // onChange: (e: ChangeEvent<HTMLInputElement>) => void,
+onChange: any,
   error: any
 }
 

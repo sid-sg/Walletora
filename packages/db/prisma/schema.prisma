@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+  // previewFeatures = ["typedSql"]
 }
 
 datasource db {
@@ -14,6 +15,8 @@ model User {
   hashedPassword String
   balance Balance[]
   onRampTransaction OnRampTransaction[]
+  sentTransfers P2PTransaction[]  @relation(name: "FromUserRelation")
+  receivedTransfers P2PTransaction[] @relation(name: "ToUserRelation")
 }
 
 model Balance {
@@ -37,6 +40,24 @@ model OnRampTransaction {
 
 enum onRampStatus {
   Success
+  Failure
+  Processing
+}
+
+model P2PTransaction {
+  id Int @id @unique @default(autoincrement())
+  status P2PStatus
+  amount Int
+  startTime DateTime
+  fromUserId Int
+  toUserId Int
+  fromUser User @relation(fields: [fromUserId], name: "FromUserRelation", references: [id]) 
+  toUser User @relation(fields: [toUserId], name: "ToUserRelation", references: [id]) 
+}
+
+
+enum P2PStatus {
+  Sent
   Failure
   Processing
 }
