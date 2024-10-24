@@ -4,6 +4,7 @@ import AddMoneyCard from '../../components/AddMoneyCard'
 import BalanceCard from '../../components/BalanceCard'
 import { authOptions } from '../../lib/auth'
 
+
 async function getBalance(){
   
   const session = await getServerSession(authOptions);  
