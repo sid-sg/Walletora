@@ -14,7 +14,6 @@ async function getOnRampTransactions(){
       startTime: "desc"
     }
   });
-  // console.log(transactions);
   
   return transactions.map(t => ({
     time: t.startTime,
@@ -53,7 +52,6 @@ async function getP2PTransactions(){
 const page = async() => {
   const onRampTransactions = await getOnRampTransactions();
   const P2PTransactions = await getP2PTransactions();
-  // console.log(P2PTransactions);
   
   
   return (

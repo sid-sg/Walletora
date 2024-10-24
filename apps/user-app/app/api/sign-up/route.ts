@@ -23,13 +23,6 @@ export async function POST(req: Request) {
 
       return NextResponse.json({ message: e.errors[0].message }, { status: 400 });
     }
-    // const validSchema =
-    // if(!validSchema){
-      // const errors = validSchema.error.errors.map(err => ({
-      //   field: err.path[0], 
-      //   message: err.message
-      // }));
-    // }
 
     const existingUser = await db.user.findFirst({
       where: { email }
