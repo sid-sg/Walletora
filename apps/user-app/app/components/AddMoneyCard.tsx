@@ -41,7 +41,7 @@ const AddMoneyCard = () => {
             onProviderChange={handleBankChange}
           />
           <Button onClick={async () => {
-            console.log(`Adding ${amount} INR to ${provider}`);
+            // console.log(`Adding ${amount} INR to ${provider}`);
             await createOnRampTransaction(provider, amount);
             window.open(redirectUrl || "");
           }}>

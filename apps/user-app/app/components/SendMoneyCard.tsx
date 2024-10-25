@@ -26,9 +26,7 @@ const SendMoneyCard = () => {
           <div className="mt-4"></div>
           <Button onClick={async () => {
             await createP2PTransfer(reciever, Number(amount)*100);
-            console.log(`Sending ${amount} INR to ${reciever}`);
-            // await createOnRampTransaction(provider, amount);
-            // window.open(redirectUrl || "");
+            // console.log(`Sending ${amount} INR to ${reciever}`);
           }}>
             Send
           </Button>
