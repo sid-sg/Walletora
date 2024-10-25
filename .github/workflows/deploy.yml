@@ -39,6 +39,7 @@ jobs:
           sudo docker pull sidsg/walletora-user-app:latest
           sudo docker stop walletora-user-app || true
           sudo docker rm walletora-user-app || true
+          sudo docker ps -a | grep walletora-user-app && sudo docker rm walletora-user-app || true
           sudo docker run -d --restart=always \
             --name walletora-user-app \
             -p 3005:3000 \
