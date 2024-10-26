@@ -75,6 +75,7 @@ jobs:
             --restart=always \
             --name walletora-webhook \
             -p 3006:4000 \
+            -e DATABASE_URL="${{ secrets.DATABASE_URL }}" \
             sidsg/walletora-webhook:latest
 
 
